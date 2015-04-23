@@ -10,9 +10,9 @@ body {
 #container {
 	margin: 20px auto;
 	text-align: center;
-	min-width: 440px;
+	min-width: 350px;
 	width: 70%;
-	min-height: 800px;
+	min-height: 300px;
 	height: auto;
 	background-color: #fff;
 	border-radius: 15px;
@@ -25,12 +25,19 @@ h1 {
 	font-size: 48px;
 	color: #555;
 	font-family: Helvetica;
+	min-width: 350px;
 }
 
-span {
+#name, #title {
+	display: inline-block;
+	vertical-align: baseline;
+}
+
+#name {
 	font-weight: normal;
 	font-size: 40px;
 	color: #777;
+	margin-right: 10px;
 }
 
 #modes_container {
@@ -66,7 +73,7 @@ span {
 }
 
 #input_code {
-	margin-top: 100px;
+	margin-top: 5%;
 	font-size: 48px;
 	border: none;
 	padding: 10px;
