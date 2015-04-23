@@ -1,8 +1,8 @@
 window.onload = function() {
 	console.log("hi!");
 
-	window.addEventListener('orientationchange', updateOrientation);
-	updateOrientation();
+	//window.addEventListener('orientationchange', updateOrientation);
+	//updateOrientation();
 
 	var input_code = document.getElementById("input_code");
 	var output_code = document.getElementById("output_code");
