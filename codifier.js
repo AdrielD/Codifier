@@ -1,6 +1,9 @@
 window.onload = function() {
 	console.log("hi!");
 
+	window.addEventListener('orientationchange', updateOrientation);
+	updateOrientation();
+
 	var input_code = document.getElementById("input_code");
 	var output_code = document.getElementById("output_code");
 	var copy_button = document.getElementById("copy_button");
@@ -47,6 +50,11 @@ window.onload = function() {
 	});
 
 };
+
+function updateOrientation() {
+	var viewport = document.querySelector("meta[name=viewport]");
+	viewport.setAttribute('content', 'width=' + window.screen.width + ', initial-scale=1.0;');
+}
 
 function UpdateOutput(text) {
 	output_code.innerHTML = text;
