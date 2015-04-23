@@ -24,7 +24,12 @@ h1 {
 	font-size: 48px;
 	color: #555;
 	font-family: Helvetica;
-	font-variant: small-caps;
+}
+
+span {
+	font-weight: normal;
+	font-size: 40px;
+	color: #777;
 }
 
 #modes_container {
