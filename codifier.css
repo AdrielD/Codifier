@@ -28,7 +28,7 @@ h1 {
 }
 
 #modes_container {
-	margin-top: 100px;
+	margin-top: 20px;
 }
 
 .option_button {
@@ -58,7 +58,7 @@ h1 {
 }
 
 #input_code {
-	margin-top: 150px;
+	margin-top: 100px;
 	font-size: 48px;
 	border: none;
 	padding: 10px;
@@ -69,13 +69,17 @@ h1 {
 	border-bottom: 1px solid #555;
 }
 
+#output_container {
+	margin-top: 100px;
+}
+
 #output_code {
 	margin: 50px auto;
 	font-size: 48px;
 	color: #333;
 	text-align: center;
-	overflow: scroll;
 	padding: 0 25px;
+	word-wrap: break-word;
 }
 
 #copyright_notice {
