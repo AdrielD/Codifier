@@ -9,6 +9,9 @@ window.onload = function() {
 	var abc_option = document.getElementById("abc");
 	var gray_option = document.getElementById("gray");
 
+	var copyright_notice = document.getElementById("copyright_notice");
+	copyright_notice.innerHTML = "Copyright &copy;" + new Date().getFullYear() + " Adriel Dinelli";
+
 	var Codify = Mirror;
 
 	input_code.addEventListener("keyup", function(event) {
