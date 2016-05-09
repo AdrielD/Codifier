@@ -15,35 +15,35 @@ window.onload = function() {
 	var copyright_notice = document.getElementById("copyright_notice");
 	copyright_notice.innerHTML = "Copyright &copy;" + new Date().getFullYear() + " Adriel Dinelli";
 
-	var Codify = Mirror;
+	var Funtext = Mirror;
 
 	input_code.addEventListener("keyup", function(event) {
-		UpdateOutput(Codify(input_code.value));
+		UpdateOutput(Funtext(input_code.value));
 	});
 
 	input_code.addEventListener("keydown", function(event) {
-		UpdateOutput(Codify(input_code.value));
+		UpdateOutput(Funtext(input_code.value));
 	});
 
 	mirror_option.addEventListener("click", function(event) {
-		Codify = Mirror;
-		UpdateOutput(Codify(input_code.value));
+		Funtext = Mirror;
+		UpdateOutput(Funtext(input_code.value));
 		mirror_option.className = "option_button selected";
 		abc_option.className = "option_button";
 		gray_option.className = "option_button";
 	});
 
 	abc_option.addEventListener("click", function(event) {
-		Codify = AbcToZyx;
-		UpdateOutput(Codify(input_code.value));
+		Funtext = AbcToZyx;
+		UpdateOutput(Funtext(input_code.value));
 		mirror_option.className = "option_button";
 		abc_option.className = "option_button selected";
 		gray_option.className = "option_button";
 	});
 
 	gray_option.addEventListener("click", function(event) {
-		Codify = GrayScale;
-		UpdateOutput(Codify(input_code.value));
+		Funtext = GrayScale;
+		UpdateOutput(Funtext(input_code.value));
 		mirror_option.className = "option_button";
 		abc_option.className = "option_button";
 		gray_option.className = "option_button selected";
@@ -78,7 +78,7 @@ function AbcToZyx(text) {
 
 	for(var i = 0; i < chars.length; i++) {
 		codified = charChart[chars[i]];
-		final_text += (codified != undefined) ? codified : chars[i];
+		final_text += (codified !== undefined) ? codified : chars[i];
 	}
 	
 	return final_text;
@@ -92,7 +92,7 @@ function GrayScale(text) {
 	for(var i = 0; i < chars.length; i++) {
 		codified = charGrayChart[chars[i]];
 
-		if(codified == undefined)
+		if(codified === undefined)
 			codified = charGrayChart["null"];
 
 		final_text += "<div style='background-color:" + codified + "; width:35px; height:35px; display:inline-block;'></div>";

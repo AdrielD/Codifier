@@ -1,3 +1,3 @@
 <?php
-	include 'codifier.html';
+	include 'funtext.html';
 ?>
