@@ -4,8 +4,8 @@ window.onload = function() {
 	//window.addEventListener('orientationchange', updateOrientation);
 	//updateOrientation();
 
-	var input_code = document.getElementById("input_code");
-	var output_code = document.getElementById("output_code");
+	var input = document.getElementById("input");
+	var output = document.getElementById("output");
 	var copy_button = document.getElementById("copy_button");
 
 	var mirror_option = document.getElementById("mirror");
@@ -17,17 +17,17 @@ window.onload = function() {
 
 	var Funtext = Mirror;
 
-	input_code.addEventListener("keyup", function(event) {
-		UpdateOutput(Funtext(input_code.value));
+	input.addEventListener("keyup", function(event) {
+		UpdateOutput(Funtext(input.value));
 	});
 
-	input_code.addEventListener("keydown", function(event) {
-		UpdateOutput(Funtext(input_code.value));
+	input.addEventListener("keydown", function(event) {
+		UpdateOutput(Funtext(input.value));
 	});
 
 	mirror_option.addEventListener("click", function(event) {
 		Funtext = Mirror;
-		UpdateOutput(Funtext(input_code.value));
+		UpdateOutput(Funtext(input.value));
 		mirror_option.className = "option_button selected";
 		abc_option.className = "option_button";
 		gray_option.className = "option_button";
@@ -35,7 +35,7 @@ window.onload = function() {
 
 	abc_option.addEventListener("click", function(event) {
 		Funtext = AbcToZyx;
-		UpdateOutput(Funtext(input_code.value));
+		UpdateOutput(Funtext(input.value));
 		mirror_option.className = "option_button";
 		abc_option.className = "option_button selected";
 		gray_option.className = "option_button";
@@ -43,7 +43,7 @@ window.onload = function() {
 
 	gray_option.addEventListener("click", function(event) {
 		Funtext = GrayScale;
-		UpdateOutput(Funtext(input_code.value));
+		UpdateOutput(Funtext(input.value));
 		mirror_option.className = "option_button";
 		abc_option.className = "option_button";
 		gray_option.className = "option_button selected";
@@ -57,48 +57,35 @@ function updateOrientation() {
 }
 
 function UpdateOutput(text) {
-	output_code.innerHTML = text;
+	output.innerHTML = text;
 }
 
 function Mirror(text) {
-	var chars = text.split("");
-	var final_text = "";
-
-	for(var i = chars.length - 1; i >= 0; i--) {
-		final_text += chars[i];
-	}
-	
-	return final_text;
+	return text.split("").reduce(function(acc, val) { return val + acc; });
 }
 
 function AbcToZyx(text) {
-	var chars = text.split("");
-	var final_text = "";
-	var codified;
-
-	for(var i = 0; i < chars.length; i++) {
-		codified = charChart[chars[i]];
-		final_text += (codified !== undefined) ? codified : chars[i];
-	}
-	
-	return final_text;
+	return text.split("").reduce(function(acc, val) { 
+		return ((acc.length == 1) ? toChart(acc) : acc) + toChart(val);
+	});
 }
 
 function GrayScale(text) {
-	var chars = text.split("");
-	var final_text = "";
-	var codified;
+	return text.split("").reduce(function(acc, val) { 
+		return ((acc.length == 1) ? htmlCubes(toGrayChart(acc)) : acc) + htmlCubes(toGrayChart(val));
+	});
+}
 
-	for(var i = 0; i < chars.length; i++) {
-		codified = charGrayChart[chars[i]];
+function htmlCubes(color) {
+	return "<div style='background-color:" + color + "; width:35px; height:35px; display:inline-block;'></div>";
+}
 
-		if(codified === undefined)
-			codified = charGrayChart["null"];
+function toChart(key) {
+	return (charChart[key] !== undefined) ? charChart[key] : key;
+}
 
-		final_text += "<div style='background-color:" + codified + "; width:35px; height:35px; display:inline-block;'></div>";
-	}
-	
-	return final_text;
+function toGrayChart(key) {
+	return (charGrayChart[key] !== undefined) ? charGrayChart[key] : charGrayChart["null"];
 }
 
 var charChart = {
