@@ -7,11 +7,11 @@ Version 1.0.0 ("Where it started..."):
 
 	- Responsive design (?);
 
-  - Mirror text;
+	- Mirror text;
 
-  - Switch "a" with "z", "b" with "y" and so on;
+	- Switch "a" with "z", "b" with "y" and so on;
 
-  - Convert text to grey scale squares!
+	- Convert text to grey scale squares!
 
 
 
