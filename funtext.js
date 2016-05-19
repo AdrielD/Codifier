@@ -51,6 +51,10 @@ window.onload = function() {
 
 };
 
+function not_blank(object) {
+	return !(object === null || object === undefined || object.trim() === "");
+}
+
 function updateOrientation() {
 	var viewport = document.querySelector("meta[name=viewport]");
 	viewport.setAttribute('content', 'width=' + window.screen.width + ', initial-scale=1.0;');
@@ -61,19 +65,25 @@ function UpdateOutput(text) {
 }
 
 function Mirror(text) {
-	return text.split("").reduce(function(acc, val) { return val + acc; });
+	if(not_blank(text)) {
+		return text.split("").reduce(function(acc, val) { return val + acc; });
+	} else return "";
 }
 
 function AbcToZyx(text) {
-	return text.split("").reduce(function(acc, val) { 
-		return ((acc.length == 1) ? toChart(acc) : acc) + toChart(val);
-	});
+	if(not_blank(text)) {
+		return text.split("").reduce(function(acc, val) { 
+			return ((acc.length == 1) ? toChart(acc) : acc) + toChart(val);
+		});
+	} else return "";
 }
 
 function GrayScale(text) {
-	return text.split("").reduce(function(acc, val) { 
-		return ((acc.length == 1) ? htmlCubes(toGrayChart(acc)) : acc) + htmlCubes(toGrayChart(val));
-	});
+	if(not_blank(text)) {
+		return text.split("").reduce(function(acc, val) { 
+			return ((acc.length == 1) ? htmlCubes(toGrayChart(acc)) : acc) + htmlCubes(toGrayChart(val));
+		});
+	} else return "";
 }
 
 function htmlCubes(color) {
