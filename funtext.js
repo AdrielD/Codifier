@@ -12,32 +12,39 @@
 			current_year: document.getElementById("current_year"),
 		}
 
-		var current_transformation = Mirror;
-		
 		DOM.current_year.innerHTML = new Date().getFullYear();
+
+		// var transform = new Event("transform");
 
 		DOM.mirror_option.transformation = Mirror;
 		DOM.abc_option.transformation = AbcToZyx;
 		DOM.gray_option.transformation = GrayScale;
 
+		// DOM.mirror_option.addEventListener("transform", TransformText);
+		// DOM.mirror_option.ontransform = TransformText;
+
 		DOM.input.onkeyup = UpdateOutput;
 		DOM.input.onkeydown = UpdateOutput;
-		
+
+		// DOM.mirror_option.onclick = DOM.mirror_option.dispatchEvent(transform);
 		DOM.mirror_option.onclick = TransformText;
 		DOM.abc_option.onclick = TransformText;
 		DOM.gray_option.onclick = TransformText;
 
 		function TransformText(event) {
-			current_transformation = event.target.transformation;
+			UpdateCSS(event.target);
 			UpdateOutput();
+		}
+
+		function UpdateCSS(obj) {
 			DOM.mirror_option.className = "option_button";
 			DOM.abc_option.className = "option_button";
 			DOM.gray_option.className = "option_button";
-			event.target.className += " selected";
+			obj.className += " selected";
 		}
 
 		function UpdateOutput() {
-			DOM.output.innerHTML = current_transformation(DOM.input.value);
+			DOM.output.innerHTML = document.getElementsByClassName("selected")[0].transformation(DOM.input.value);
 		}
 	};
 
